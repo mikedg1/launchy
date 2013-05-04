@@ -1,0 +1,16 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@android:id/text1"
+        android:textColor="@color/item_color" 
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="30.0px"
+        />
+
+</RelativeLayout>
