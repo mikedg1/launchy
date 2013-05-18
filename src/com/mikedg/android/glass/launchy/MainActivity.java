@@ -22,8 +22,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -59,13 +57,26 @@ public class MainActivity extends Activity {
 
             }
         });
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_PACKAGE_ADDED);
+        intentFilter.addDataScheme("package");
+        registerReceiver(mPackageBroadcastReciever, intentFilter);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mAppHelper.onDestroy();
+        unregisterReceiver(mPackageBroadcastReciever);
     }
+
+    BroadcastReceiver mPackageBroadcastReciever = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            mAppHelper.loadApplications(false);
+        }
+    };
 
     // Just some junk I was investigating
     // private void setupTestReceiver() {
