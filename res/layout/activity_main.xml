@@ -11,22 +11,22 @@
 
     <TextView
         android:id="@android:id/text1"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
         android:ellipsize="end"
-        android:text="Launch..."
-        android:textColor="@*android:color/white"
-        android:textSize="30px"
+        android:gravity="right"
+        android:text="@string/launch"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_size"
         tools:ignore="PrivateResource" />
 
     <ListView
         android:id="@android:id/list"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="2"
         android:divider="@null"
-        android:listSelector="@android:color/transparent" >
+        android:listSelector="@android:color/transparent"
+        android:scrollbars="none" >
     </ListView>
 
 </LinearLayout>
