@@ -8,7 +8,7 @@ A way to launch native apps on Google Glass.
 - Now whenever you go to Settings in GlassHome, Launchy will pop up. If you actually need to get to Glass settings, Launchy provides a permanent link for that.
 
 So why do we need this app?
-Glass provides on way to launch native apps. If you deploy and run an app, as soon as the screen goes off GlassHome takes over and you can not run your app again.
+Glass provides no way to launch native apps. If you deploy and run an app, as soon as the screen goes off GlassHome takes over and you can not run your app again.
 
 How'd you do that? GlassHome has a handful of local Activities that are launched, but many of these are launched by Package and Class name, however we lucked out because settings was simply launched with an action that I can intercept and decide to have Launchy take over from there.
 
