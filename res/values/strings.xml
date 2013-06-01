@@ -3,5 +3,6 @@
 
     <string name="app_name">Launchy</string>
     <string name="launch">Launch... </string>
+    <string name="voice_menu_trigger">start launchy</string>
 
 </resources>
