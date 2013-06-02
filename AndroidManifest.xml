@@ -24,6 +24,11 @@
                 <action android:name="com.google.glass.action.ACTION_GO_TO_SETTINGS" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="com.google.android.glass.action.VOICE_TRIGGER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.google.android.glass.voice_trigger" android:resource="@string/voice_menu_trigger" />
         </activity>
     </application>
 
