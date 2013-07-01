@@ -30,6 +30,12 @@
             </intent-filter>
             <meta-data android:name="com.google.android.glass.voice_trigger" android:resource="@string/voice_menu_trigger" />
         </activity>
+        <receiver android:name=".LongPressBroadcastReceiver" >
+            <intent-filter android:priority="1000" >
+                <!-- Replaces normal, long press to Google, if this is a launcher, it's basically a system app -->
+                <action android:name="com.google.glass.action.LONG_TAP" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
