@@ -17,18 +17,10 @@ limitations under the License.
 package com.mikedg.android.glass.launchy;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ListView;
-import android.widget.Toast;
 
 public class LaunchActivity extends Activity {
     @Override
@@ -37,12 +29,39 @@ public class LaunchActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         Uri uri = getIntent().getData();
-        
-        Intent i = new Intent();
-        //getPath includes the leading / so skip it
-        i.setComponent(new ComponentName(uri.getHost(), uri.getPath().substring(1)));
-        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(i);
+
+        //FIXME: I cant actually get the open command to give me an option here... wtf...
+        if (uri.getHost().endsWith("youtube.com") && uri.getScheme().startsWith("http")) {
+            //Works
+//            Intent i = new Intent();
+//            i.setAction("com.google.glass.action.VIDEOPLAYER");
+//            i.putExtra("video_url","http://www.youtube.com/watch?v=2L5oYI67BCc");
+//            startActivity(i);
+
+            Intent i = new Intent();
+//            i.setFlags(0x10000000);
+            i.setAction("com.google.glass.action.VIDEOPLAYER");
+            //i.putExtra("video_url","http://www.youtube.com/watch?v=yaE2XgB09yU");//worked
+            i.putExtra("video_url",uri.toString());
+            startActivity(i);
+
+//            adb shell am start -a com.google.glass.action.VIDEOPLAYER  -e video_url http://www.youtube.com/watch?v=2L5oYI67BCc
+        } else if (uri.getScheme().equals("youtube")) {
+            //FIXME: untested
+            //Load up alternate youtube way
+            Intent i = new Intent();
+            i.setAction("com.google.glass.action.VIDEOPLAYER");
+            i.putExtra("video_url","http://" + uri.getHost() + uri.getPath()); //FIXME: check this
+            startActivity(i);
+        } else {
+
+            //Load up app
+            Intent i = new Intent();
+            //getPath includes the leading / so skip it
+            i.setComponent(new ComponentName(uri.getHost(), uri.getPath().substring(1)));
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
+        }
         
         finish();
         //Toast.makeText(this, "In LaunchActivity" + getIntent().getDataString(), Toast.LENGTH_LONG).show();
