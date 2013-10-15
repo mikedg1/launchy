@@ -36,12 +36,6 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mAppHelper = new AppHelper(this);
-        mAppHelper.loadApplications(true);
-
-        mAppHelper.bindApplications();
-        mAppHelper.registerIntentReceivers();
-
         // setupTestReceiver();
 
         final ListView list = (ListView) findViewById(android.R.id.list);
@@ -57,6 +51,17 @@ public class MainActivity extends Activity {
 
             }
         });
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        mAppHelper = new AppHelper(this);
+        mAppHelper.loadApplications(true);
+
+        mAppHelper.bindApplications();
+        mAppHelper.registerIntentReceivers();
 
         IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_PACKAGE_ADDED);
