@@ -138,7 +138,7 @@ public class AppHelper {
 
         application.title = "Glass Settings";
         application.setActivity(new ComponentName("com.google.glass.home",
-                "com.google.glass.home.settings.SettingsTimelineActivity"),
+                "com.google.glass.home.settings.SettingsActivity"),
                 Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
         // application.icon = info.activityInfo.loadIcon(manager);
 
