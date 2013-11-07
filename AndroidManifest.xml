@@ -36,6 +36,40 @@
                 <action android:name="com.google.glass.action.LONG_PRESS" />
             </intent-filter>
         </receiver>
+        <activity android:name="com.mikedg.android.glass.launchy.LaunchActivity" android:clearTaskOnLaunch="true" android:launchMode="singleInstance">
+			<intent-filter>
+				<action android:name="android.intent.action.VIEW"/>
+				<category android:name="android.intent.category.BROWSABLE"/>
+				<category android:name="android.intent.category.DEFAULT"/>
+				<data android:scheme="launchy"/>
+			</intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="youtube"/>
+            </intent-filter>
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.VIEW" />-->
+                <!--<category android:name="android.intent.category.DEFAULT" />-->
+                <!--<category android:name="android.intent.category.BROWSABLE" />-->
+                <!--<data android:scheme="http"  android:host="*.youtube.com" android:pathPrefix="/watch" />-->
+                <!--<data android:scheme="https" android:host="*.youtube.com" android:pathPrefix="/watch" />-->
+            <!--</intent-filter>-->
+            <!-- above, works, at least via command line specifying all pieces of browsable and default -->
+            <!-- cant ever get below working so tried to change it a bit -->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.VIEW" />-->
+                <!--<data android:scheme="http"  android:host="*.youtube.com" android:pathPrefix="/watch" />-->
+                <!--<data android:scheme="https" android:host="*.youtube.com" android:pathPrefix="/watch" />-->
+            <!--</intent-filter>-->
+            <intent-filter android:priority="100">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:scheme="sausage" />
+            </intent-filter>
+        </activity>
     </application>
-
 </manifest>
