@@ -17,6 +17,7 @@ limitations under the License.
 package com.mikedg.android.glass.launchy;
 
 import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -26,6 +27,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ListView;
+import android.widget.RemoteViews;
+
+import com.google.android.glass.timeline.LiveCard;
+import com.google.android.glass.timeline.TimelineManager;
+//import com.google.android.glass.timeline.LiveCard;
+//import com.google.android.glass.timeline.TimelineManager;
 
 public class MainActivity extends Activity {
 
@@ -62,6 +69,42 @@ public class MainActivity extends Activity {
         intentFilter.addAction(Intent.ACTION_PACKAGE_ADDED);
         intentFilter.addDataScheme("package");
         registerReceiver(mPackageBroadcastReciever, intentFilter);
+
+//        publishCard(this);
+    }
+
+    // Cached instance of the LiveCard created by the publishCard() method.
+    private LiveCard mLiveCard;
+
+    private void publishCard(Context context) {
+        if (mLiveCard == null) {
+            String cardId = "my_card";
+            TimelineManager tm = TimelineManager.from(context);
+            mLiveCard = tm.getLiveCard(cardId);
+
+            mLiveCard.setViews(new RemoteViews(context.getPackageName(),
+                    R.layout.activity_main));
+            Intent intent = new Intent(context, MainActivity.class);
+            mLiveCard.setAction(PendingIntent.getActivity(context, 0,
+                    intent, 0));
+            
+//          if you want Glass to automatically display the live card after publishing, call setNonSilent(boolean) before publish().
+            mLiveCard.setNonSilent(true);
+            
+            mLiveCard.publish();
+           
+        } else {
+            // Card is already published.
+        	
+            return;
+        }
+    }
+
+    private void unpublishCard(Context context) {
+        if (mLiveCard != null) {
+            mLiveCard.unpublish();
+            mLiveCard = null;
+        }
     }
 
     @Override

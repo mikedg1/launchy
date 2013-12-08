@@ -6,13 +6,26 @@
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="17" />
+        android:targetSdkVersion="14" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/GlassTheme" >
+        <!-- <activity 
+            android:name="com.mikedg.android.glass.launchy.MainActivity"
+            android:label="@string/app_name" android:clearTaskOnLaunch="true" android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.google.glass.action.ACTION_GO_TO_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity> -->
+        <!-- Think this needs to be a seperate activity from other filters? -->
         <activity
             android:name="com.mikedg.android.glass.launchy.MainActivity"
             android:label="@string/app_name" android:clearTaskOnLaunch="true" android:launchMode="singleInstance">
@@ -25,17 +38,19 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <intent-filter>
-                <action android:name="com.google.android.glass.action.VOICE_TRIGGER" />
-                <category android:name="android.intent.category.DEFAULT" />
+                <action
+                    android:name="com.google.android.glass.action.VOICE_TRIGGER" />
             </intent-filter>
-            <meta-data android:name="com.google.android.glass.voice_trigger" android:resource="@string/voice_menu_trigger" />
+            <meta-data android:name="com.google.android.glass.VoiceTrigger"
+                       android:resource="@xml/voice_trigger" />
         </activity>
-        <receiver android:name=".LongPressBroadcastReceiver" >
-            <intent-filter android:priority="1000" >
-                <!-- Replaces normal, long press to Google, if this is a launcher, it's basically a system app -->
-                <action android:name="com.google.glass.action.LONG_PRESS" />
-            </intent-filter>
-        </receiver>
+        <!--<receiver android:name=".LongPressBroadcastReceiver" >-->
+            <!--<intent-filter android:priority="1000" >-->
+                <!--&lt;!&ndash; Replaces normal, long press to Google, if this is a launcher, it's basically a system app &ndash;&gt;-->
+                <!--&lt;!&ndash; broke in XE11 &ndash;&gt;-->
+                <!--<action android:name="com.google.glass.action.LONG_PRESS" />-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
         <activity android:name="com.mikedg.android.glass.launchy.LaunchActivity" android:clearTaskOnLaunch="true" android:launchMode="singleInstance">
 			<intent-filter>
 				<action android:name="android.intent.action.VIEW"/>
