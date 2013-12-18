@@ -74,38 +74,38 @@ public class MainActivity extends Activity {
     }
 
     // Cached instance of the LiveCard created by the publishCard() method.
-    private LiveCard mLiveCard;
+//    private LiveCard mLiveCard;
 
-    private void publishCard(Context context) {
-        if (mLiveCard == null) {
-            String cardId = "my_card";
-            TimelineManager tm = TimelineManager.from(context);
-            mLiveCard = tm.getLiveCard(cardId);
-
-            mLiveCard.setViews(new RemoteViews(context.getPackageName(),
-                    R.layout.activity_main));
-            Intent intent = new Intent(context, MainActivity.class);
-            mLiveCard.setAction(PendingIntent.getActivity(context, 0,
-                    intent, 0));
-            
-//          if you want Glass to automatically display the live card after publishing, call setNonSilent(boolean) before publish().
-            mLiveCard.setNonSilent(true);
-            
-            mLiveCard.publish();
-           
-        } else {
-            // Card is already published.
-        	
-            return;
-        }
-    }
-
-    private void unpublishCard(Context context) {
-        if (mLiveCard != null) {
-            mLiveCard.unpublish();
-            mLiveCard = null;
-        }
-    }
+//    private void publishCard(Context context) {
+//        if (mLiveCard == null) {
+//            String cardId = "my_card";
+//            TimelineManager tm = TimelineManager.from(context);
+//            mLiveCard = tm.getLiveCard(cardId);
+//
+//            mLiveCard.setViews(new RemoteViews(context.getPackageName(),
+//                    R.layout.activity_main));
+//            Intent intent = new Intent(context, MainActivity.class);
+//            mLiveCard.setAction(PendingIntent.getActivity(context, 0,
+//                    intent, 0));
+//
+////          if you want Glass to automatically display the live card after publishing, call setNonSilent(boolean) before publish().
+//            mLiveCard.setNonSilent(true);
+//
+//            mLiveCard.publish();
+//
+//        } else {
+//            // Card is already published.
+//
+//            return;
+//        }
+//    }
+//
+//    private void unpublishCard(Context context) {
+//        if (mLiveCard != null) {
+//            mLiveCard.unpublish();
+//            mLiveCard = null;
+//        }
+//    }
 
     @Override
     protected void onDestroy() {
