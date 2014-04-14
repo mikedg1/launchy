@@ -8,6 +8,8 @@ A way to launch native apps on Google Glass.
 - Edit: removed in XE12, due to the selection dialog breaking. Now whenever you go to Settings in GlassHome, Launchy will pop up. If you actually need to get to Glass settings, Launchy provides a permanent link for that.
 - Say "Run an App" at the OK, Glass screen to run Launchy
 
+- Building with Eclipse? Go grab IntelliJ, or just modify your project settings to point to the GDK preview.
+
 So why do we need this app?
 Glass provides no way to launch native apps. If you deploy and run an app, as soon as the screen goes off GlassHome takes over and you can not run your app again.
 
