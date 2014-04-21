@@ -8,6 +8,9 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="14" />
 
+    <!-- For custom voice command showing up in the Ok, Glass menu -->
+    <uses-permission android:name="com.google.android.glass.permission.DEVELOPMENT" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -33,10 +36,10 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <!--<intent-filter>-->
-                <!--<action android:name="com.google.glass.action.ACTION_GO_TO_SETTINGS" />-->
-                <!--<category android:name="android.intent.category.DEFAULT" />-->
-            <!--</intent-filter>-->
+            <intent-filter>
+                <action android:name="com.google.glass.action.ACTION_GO_TO_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
             <intent-filter>
                 <action
                     android:name="com.google.android.glass.action.VOICE_TRIGGER" />
@@ -46,9 +49,9 @@
         </activity>
         <!--<receiver android:name=".LongPressBroadcastReceiver" >-->
             <!--<intent-filter android:priority="1000" >-->
-                <!--&lt;!&ndash; Replaces normal, long press to Google, if this is a launcher, it's basically a system app &ndash;&gt;-->
-                <!--&lt;!&ndash; broke in XE11 &ndash;&gt;-->
-                <!--<action android:name="com.google.glass.action.LONG_PRESS" />-->
+                <!-- Replaces normal, long press to Google, if this is a launcher, it's basically a system app -->
+                <!-- broke in XE11 -->
+            <!--<action android:name="com.google.glass.action.LONG_PRESS" />-->
             <!--</intent-filter>-->
         <!--</receiver>-->
         <activity android:name="com.mikedg.android.glass.launchy.LaunchActivity" android:clearTaskOnLaunch="true" android:launchMode="singleInstance">
