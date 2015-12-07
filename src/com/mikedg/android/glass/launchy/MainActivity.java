@@ -37,6 +37,9 @@ public class MainActivity extends Activity {
 
 	private AppHelper mAppHelper;
 
+	//fix navigation problem basing on XE22
+	private int getSelectedItemPosition=0;
+
 	GestureDetector mGestureDetector;
 
 
@@ -86,22 +89,29 @@ public class MainActivity extends Activity {
 			@Override
 			public boolean onGesture(Gesture gesture) {
 				final ListView list = (ListView) findViewById(android.R.id.list);
-				System.out.println("onGesture:"+list.getSelectedItemPosition());
+
+				if(getSelectedItemPosition<0 &&list.getSelectedItemPosition()<=-1){
+					getSelectedItemPosition=0;
+				}
+
+				System.out.println("onGesture:" + getSelectedItemPosition);
+
 				if (gesture == Gesture.TAP) { // On Tap, generate a new number
 					System.out.println("TAP");
-					ApplicationInfo app = (ApplicationInfo) list.getItemAtPosition(list.getSelectedItemPosition());
-					startActivity(app.intent);                
-
+					ApplicationInfo app = (ApplicationInfo) list.getItemAtPosition(getSelectedItemPosition);
+					startActivity(app.intent);
 					return true;
 				} else if (gesture == Gesture.SWIPE_RIGHT) {
 					// do something on right (forward) swipe
 					System.out.println("SWIPE_RIGHT");
-					list.setSelection(list.getSelectedItemPosition()+1);
+					list.setSelection(getSelectedItemPosition+1);
+					getSelectedItemPosition+=1;
 					return true;
 				} else if (gesture == Gesture.SWIPE_LEFT) {
 					// do something on left (backwards) swipe
 					System.out.println("SWIPE_LEFT");
-					list.setSelection(list.getSelectedItemPosition()-1);
+					list.setSelection(getSelectedItemPosition-1);
+					getSelectedItemPosition-=1;
 					return true;
 				}
 				return false;
